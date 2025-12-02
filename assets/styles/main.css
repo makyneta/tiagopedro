@@ -1,0 +1,539 @@
+/* style.css - CSS COMPLETO PARA TIAGO PEDRO (TEMA DARK MODE DE LUXO) */
+
+/* VARIÁVEIS DE COR E TIPOGRAFIA */
+:root {
+    --primary-color: #C6A477; /* Dourado Envelhecido/Bege */
+    --background-dark: #111111; /* Preto Fundo */
+    --text-light: #F5F5F5; /* Branco Quente para texto */
+    --text-dark: #1a1a1a; /* Preto para elementos em fundos claros */
+    --font-serif: 'Georgia', serif; /* Títulos e Logotipo (Serif) */
+    --font-sans: 'Lato', sans-serif; /* Corpo de Texto (Sans-serif) */
+}
+
+/* 1. RESET E BASE */
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+body { 
+    font-family: var(--font-sans); 
+    color: var(--text-light); 
+    line-height: 1.6;
+    background-color: var(--background-dark); 
+}
+section { 
+    padding: 80px 5%; 
+}
+h2 { 
+    font-family: var(--font-serif); 
+    font-size: 3.5em; 
+    margin-bottom: 20px; 
+    color: var(--text-light); 
+}
+h3 { 
+    font-family: var(--font-serif); 
+    font-size: 2.5em; 
+    margin-bottom: 40px; 
+    text-align: center; 
+    color: var(--text-light); 
+}
+a {
+    text-decoration: none;
+}
+
+/* 2. CABEÇALHO (Header) e Navegação */
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* CORREÇÃO: Espaçamento adequado no topo */
+    padding: 20px 5%; 
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    /* Fundo claro no topo para contrastar com a foto inicial (se for escura) */
+    background-color: rgba(255, 255, 255, 0.98); 
+    transition: all 0.3s;
+}
+
+/* Estilo do Logo */
+#main-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2em; 
+    color: var(--text-dark); 
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Efeito Scrolled (Fundo escuro após o scroll) */
+#main-header.scrolled {
+    background-color: var(--background-dark); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 15px 5%; /* Torna-o ligeiramente mais compacto */
+}
+#main-header.scrolled h1, #main-header.scrolled a {
+    color: var(--text-light); 
+}
+
+/* Navegação Desktop */
+#main-nav ul { 
+    list-style: none; 
+    display: flex; 
+    align-items: center;
+}
+#main-nav ul li a {
+    color: var(--text-dark); 
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: 700;
+    /* CORREÇÃO: Espaçamento entre links */
+    margin: 0 15px; 
+    padding: 5px 0; 
+    transition: color 0.3s;
+}
+#main-nav.active a, #main-header.scrolled a:hover {
+    color: var(--primary-color);
+}
+#main-nav ul li a:hover {
+    color: var(--primary-color); 
+}
+
+/* Botão Hamburger (Mobile) */
+.menu-toggle { display: none; border: none; background: none; cursor: pointer; padding: 5px; z-index: 1001; }
+.menu-toggle .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-dark); transition: all 0.3s ease-in-out; }
+
+/* 3. BOTÕES (Estilo Dourado/Clássico) */
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    display: inline-block;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-dark); 
+    border: 1px solid var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #0000006e;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--text-light);
+}
+.btn-secondary:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* 4. SECÇÃO HERO (#home) */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('../images/background/hero.jpg') center/cover no-repeat;
+    position: relative;
+}
+.hero-section::after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+.hero-content {
+    padding: 30px;
+}
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* 5. PORTFÓLIO EM DESTAQUE (#portfolio) */
+.showcase-section {
+    padding-bottom: 60px;
+    text-align: center;
+}
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+.grid-item { 
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.grid-item:hover {
+    transform: scale(1.03);
+    opacity: 0.8;
+}
+
+/* 6. SECÇÃO SOBRE MIM (#sobre) - Novo Layout */
+.about-section {
+    padding: 80px 5%;
+    text-align: center;
+    background-color: #0f0f0f;
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    /* Alinha a imagem e o texto lado a lado em desktop */
+    align-items: center; 
+    justify-content: space-between;
+    gap: 50px; /* Espaço entre a foto e o texto */
+}
+
+/* Estilo da Foto de Perfil */
+.profile-photo {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 50%; /* Faz a foto ser redonda */
+    border: 4px solid var(--primary-color); /* Adiciona um aro dourado elegante */
+    flex-shrink: 0; /* Impede que a foto encolha demasiado */
+}
+
+/* Estilo do Conteúdo Textual */
+.about-content {
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.about-title {
+    text-align: left; /* Garante que o título se alinha com o texto */
+    margin-bottom: 25px;
+}
+
+/* 7. TESTEMUNHOS (#testemunhos) */
+.testimonials-section {
+    background-color: #222; 
+    text-align: center;
+}
+.testimonial-card {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 30px;
+    border: 1px solid var(--primary-color);
+    border-left: 5px solid var(--primary-color);
+}
+.testimonial-card p {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+.testimonial-card h4 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 8. CONTACTO (#contacto) */
+.contact-section {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #222;
+    color: var(--text-light);
+    border: 1px solid #444;
+    font-family: var(--font-sans);
+}
+
+/* 9. RODAPÉ (Footer) */
+#main-footer {
+    background-color: #000;
+    color: #888;
+    padding: 20px 5%;
+    text-align: center;
+    font-size: 0.8em;
+}
+.social-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 0 5px;
+}
+.social-links a:hover {
+    color: var(--text-light);
+}
+
+/* Estilo geral do link no rodapé */
+#main-footer a {
+    /* 🟢 CORREÇÃO 1: Remover Sublinhado Azul Padrão */
+    text-decoration: none; 
+    
+    /* 🟢 CORREÇÃO 2: Cor Branca por Padrão (usa a cor do texto do footer) */
+    color: var(--header-bg); /* Use Branco Puro (ou #F5F5F5) */
+    
+    transition: color 0.3s ease;
+}
+
+/* Efeito Hover */
+#main-footer a:hover {
+    /* 🟢 CORREÇÃO 3: Cor Dourada/Bege ao fazer hover */
+    color: var(--primary-color);
+}
+
+/* 🟢 CORREÇÃO 4: Controlar o Espaçamento Vertical entre os parágrafos */
+.footer-info p {
+    margin: 3px 0; /* Reduz a margem padrão dos parágrafos para encurtar o espaço */
+}
+
+/* Opcional: Estilizar o "Made By" ligeiramente menor */
+.footer-info .made-by a {
+    opacity: 0.8;
+}
+
+/* 10. MEDIA QUERIES (RESPONSIVIDADE) */
+@media (max-width: 768px) {
+    
+    /* Cabeçalho Mobile */
+    #main-header {
+        padding: 15px 5%;
+    }
+    .menu-toggle { 
+        display: block; 
+    }
+    
+    /* Hamburger Icon Colors */
+    .menu-toggle .bar {
+        background-color: var(--text-dark); /* Ícone escuro para contraste com header claro */
+    }
+    #main-header.scrolled .menu-toggle .bar {
+        background-color: var(--text-light); /* Ícone claro no header escuro */
+    }
+
+    /* Menu de Navegação Escondido/Ativo */
+    #main-nav { 
+        display: none; 
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--background-dark); 
+        padding-top: 80px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    #main-nav.active { 
+        display: flex; 
+        transform: translateX(0); 
+    }
+    #main-nav ul { 
+        flex-direction: column; 
+    }
+    #main-nav ul li { 
+        text-align: left; 
+        padding: 15px 30px; 
+        border-bottom: 1px solid #222; 
+    }
+    #main-nav ul li:last-child {
+        border-bottom: none;
+    }
+    #main-nav a { 
+        color: var(--text-light); 
+        margin: 0;
+    }
+
+    /* Ajustes de Conteúdo */
+    .hero-content h2 { 
+        font-size: 2em; 
+    }
+    h3 {
+        font-size: 2em;
+    }
+    .grid-item {
+        height: 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-container {
+        /* Muda para empilhar a foto e o texto em ecrãs mais pequenos */
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .profile-photo {
+        width: 250px;
+        height: 250px;
+    }
+
+    .about-content {
+        text-align: center; /* Centraliza o texto em mobile */
+    }
+    .about-title {
+        text-align: center;
+    }
+}
+
+/* Fundo Escuro do Modal - Invisível por padrão */
+.modal-overlay {
+    display: flex; 
+    opacity: 0; 
+    visibility: hidden;
+    position: fixed;
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Classe Ativa (adicionada/removida pelo JavaScript) */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Conteúdo do Modal (Tamanho Fixo e Suave) */
+.modal-content {
+    background-color: #5d5d5d; /* Fundo branco/claro do modal */
+    color: var(--text-light); /* Texto escuro dentro do modal */
+    
+    padding: 30px; /* Mais padding para mais espaço em branco */
+    border: 1px solid #ddd; /* Borda cinza suave */
+    
+    /* 🟢 TAMANHO FIXO (MÁXIMO) */
+    width: 95%; 
+    max-width: 1200px; 
+    height: 90vh; 
+    
+    overflow-y: auto; 
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3); /* Sombra mais visível para destaque */
+    
+    /* 🟢 ANIMAÇÃO: Surge do topo */
+    transform: translateY(-50px);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Animação - Posição Final */
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Botão de Fechar (Mais limpo) */
+.close-btn {
+    color: var(--text-light); /* Cor escura */
+    font-size: 36px;
+    font-weight: 300; /* Fonte mais fina */
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 30px;
+}
+.close-btn:hover, .close-btn:focus {
+    color: var(--primary-color);
+}
+
+/* Estilos da Galeria Interna do Modal */
+.modal-content h3 {
+    text-align: left; /* Alinhar à esquerda para visual profissional */
+    margin-bottom: 5px;
+    color: var(--text-light);
+}
+.modal-caption {
+    text-align: left;
+    color: var(#b1b1b1);
+    margin-bottom: 25px;
+}
+
+.modal-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px; /* Mais espaço para não poluir */
+    padding: 0;
+}
+
+.modal-item {
+    border: 1px solid #ffffffe3; /* Borda suave */
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.3s;
+}
+
+.modal-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s;
+}
+
+/* Botão de Favoritos (Subtil) */
+.add-fav-btn {
+    width: 100%;
+    background-color: var(--background-dark); /* Fundo muito claro */
+    color: var(--text-light);
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 700;
+    margin-top: 0; /* Colado à imagem */
+    transition: background-color 0.3s, color 0.3s;
+    letter-spacing: 0.5px;
+}
+.add-fav-btn:hover {
+    background-color: var(--primary-color); 
+    color: var(--header-bg);
+}
+
+/* Se for favoritado (Estilo mais limpo) */
+.modal-item.favorited {
+    box-shadow: 0 0 0 3px var(--primary-color); /* Aro Dourado */
+}
+.modal-item.favorited .add-fav-btn {
+    background-color: var(--primary-color);
+    color: var(--header-bg);
+    content: "Remover dos Favoritos";
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+        height: 95vh;
+        padding: 20px;
+    }
+}
+
+/* 9. RODAPÉ (Footer) - Verificação */
+
+.social-links a {
+    /* Aplica a cor dourada ao ícone */
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    margin: 0 5px !important; /* Aumentar o margin para mais espaço entre os ícones */
+    font-size: 1.5em !important; /* Aumenta o tamanho do ícone */
+    transition: color 0.3s ease !important; 
+}
+
+.social-links a:hover {
+    /* Efeito hover para branco */
+    color: var(--text-light) !important; 
+}
